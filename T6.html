@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Галерея</title>
+  <style>
+    .gallery-image {
+      max-width: 100%;
+      max-height: 750px;
+    }
+  </style>
+</head>
+<body>
+  <img id="galleryImage" class="gallery-image" src="" alt="Image">
+  <button id="prevButton">BACK</button>
+  <button id="nextButton">NEXT</button>
+
+  <script>
+    var imageUrls = [
+      "https://sun9-12.userapi.com/impg/fukaMMalH3GZscEHDEFzptSdvzCkQBc7CrGkhg/RtbXCeo84lk.jpg?size=1920x1080&quality=96&sign=7f6c8982637d30b560c6bdc3965b84cd&type=album",
+      "https://sun9-56.userapi.com/impg/x8VK3-1Mg8X0IGVDc80w2ZjHLjrveFY-MCvyww/EZfxdsJBH9s.jpg?size=1920x1080&quality=96&sign=f7c99af9d20141a9f2902468a6d9d62a&type=album",
+      "https://sun9-31.userapi.com/impg/MgnHQRUQVboBVLAMlWbInMEex04q9raMfIxWEA/vz24gieDgxY.jpg?size=1920x1080&quality=96&sign=d807e9ab81217e3b2913d7a33444422f&type=album",
+      "https://sun9-30.userapi.com/impg/rSbt1iqMGXWYixCsLpGIRVx_zgLuocWiucdyrQ/_BguwjNaF3I.jpg?size=1920x1080&quality=96&sign=e2b2a2e0258c57682c209fd46fb25b7f&type=album",
+      "https://sun9-24.userapi.com/impg/41rPtC4Idij5BkaYUl2Rx6G5EQ_Rn8nU3FBFkg/ba_PB_edhLc.jpg?size=1920x1080&quality=96&sign=13a892611b76778e708d7a00678bee97&type=album",
+    ];
+
+    var currentIndex = 0;
+    var galleryImage = document.getElementById("galleryImage");
+    var prevButton = document.getElementById("prevButton");
+    var nextButton = document.getElementById("nextButton");
+
+    function updateImage() {
+      galleryImage.src = imageUrls[currentIndex];
+    }
+
+    prevButton.addEventListener("click", function() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = imageUrls.length - 1;
+      }
+      updateImage();
+    });
+
+
+
+    nextButton.addEventListener("click", function() {
+      currentIndex++;
+      if (currentIndex >= imageUrls.length) {
+        currentIndex = 0;
+      }
+      updateImage();
+    });
+    updateImage();
+  </script>
+</body>
+</html>

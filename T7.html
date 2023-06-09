@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Галерея</title>
+  <style>
+    .gallery {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .gallery-image {
+      max-width: 200px;
+      max-height: 200px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .selected-image {
+      max-width: 400px;
+      max-height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <img class="gallery-image" src="https://sun9-12.userapi.com/impg/fukaMMalH3GZscEHDEFzptSdvzCkQBc7CrGkhg/RtbXCeo84lk.jpg?size=1920x1080&quality=96&sign=7f6c8982637d30b560c6bdc3965b84cd&type=album" alt="Image 1">
+    <img class="gallery-image" src="https://sun9-56.userapi.com/impg/x8VK3-1Mg8X0IGVDc80w2ZjHLjrveFY-MCvyww/EZfxdsJBH9s.jpg?size=1920x1080&quality=96&sign=f7c99af9d20141a9f2902468a6d9d62a&type=album" alt="Image 2">
+    <img class="gallery-image" src="https://sun9-31.userapi.com/impg/MgnHQRUQVboBVLAMlWbInMEex04q9raMfIxWEA/vz24gieDgxY.jpg?size=1920x1080&quality=96&sign=d807e9ab81217e3b2913d7a33444422f&type=album" alt="Image 3">
+    <img class="gallery-image" src="https://sun9-30.userapi.com/impg/rSbt1iqMGXWYixCsLpGIRVx_zgLuocWiucdyrQ/_BguwjNaF3I.jpg?size=1920x1080&quality=96&sign=e2b2a2e0258c57682c209fd46fb25b7f&type=album" alt="Image 4">
+    <img class="gallery-image" src="https://sun9-24.userapi.com/impg/41rPtC4Idij5BkaYUl2Rx6G5EQ_Rn8nU3FBFkg/ba_PB_edhLc.jpg?size=1920x1080&quality=96&sign=13a892611b76778e708d7a00678bee97&type=album" alt="Image 5">
+  </div>
+
+  <button id="prevButton">Назад</button>
+  <button id="nextButton">Вперед</button>
+
+  <script>
+    var galleryImages = document.querySelectorAll('.gallery-image');
+    var prevButton = document.getElementById("prevButton");
+    var nextButton = document.getElementById("nextButton");
+
+    var selectedIndex = 0;
+    var selectedImage = null;
+
+    function updateSelectedImage() {
+      if (selectedImage) {
+        selectedImage.classList.remove('selected-image');
+      }
+      selectedImage = galleryImages[selectedIndex];
+      selectedImage.classList.add('selected-image');
+    }
+
+
+    function showPreviousImage() {
+      selectedIndex--;
+      if (selectedIndex < 0) {
+        selectedIndex = galleryImages.length - 1;
+      }
+      updateSelectedImage();
+    }
+
+
+    function showNextImage() {
+      selectedIndex++;
+      if (selectedIndex >= galleryImages.length) {
+        selectedIndex = 0;
+      }
+      updateSelectedImage();
+    }
+
+
+    prevButton.addEventListener('click', showPreviousImage);
+    nextButton.addEventListener('click', showNextImage);
+
+
+    updateSelectedImage();
+  </script>
+</body>
+</html>
